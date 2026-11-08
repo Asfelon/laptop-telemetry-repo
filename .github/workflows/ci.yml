@@ -146,7 +146,7 @@ jobs:
 
       - name: Verify package
         run: |
-          uv run twine check dist/*
+          uv run --with twine twine check dist/*
           ls -la dist/
 
       - name: Upload build artifacts
