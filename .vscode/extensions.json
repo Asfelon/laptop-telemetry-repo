@@ -1,0 +1,21 @@
+{
+  "recommendations": [
+    "charliermarsh.ruff",
+    "ms-python.python",
+    "ms-python.mypy-type-checker",
+    "ms-python.vscode-pylance",
+    "redhat.vscode-yaml",
+    "tamasfe.even-better-toml",
+    "eamodio.gitlens",
+    "github.vscode-github-actions",
+    "ms-vscode.vscode-json",
+    "streetsidesoftware.code-spell-checker",
+    "usernamehw.errorlens",
+    "gruntfuggly.todo-tree"
+  ],
+  "unwantedRecommendations": [
+    "ms-python.black-formatter",
+    "ms-python.flake8",
+    "ms-python.pylint"
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run Collector (Default Config)",
+      "type": "python",
+      "request": "launch",
+      "module": "laptop_telemetry",
+      "args": ["--once"],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/src"
+      },
+      "justMyCode": true
+    },
+    {
+      "name": "Run Collector (Custom Config)",
+      "type": "python",
+      "request": "launch",
+      "module": "laptop_telemetry",
+      "args": ["--config", "config/default.yaml", "--once"],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/src"
+      },
+      "justMyCode": true
+    },
+    {
+      "name": "Run Collector (Debug Logging)",
+      "type": "python",
+      "request": "launch",
+      "module": "laptop_telemetry",
+      "args": ["--config", "config/default.yaml", "--once", "--dry-run"],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/src",
+        "LAPTOP_TELEMETRY_LOGGING_LEVEL": "DEBUG"
+      },
+      "justMyCode": true
+    },
+    {
+      "name": "Run Tests (All)",
+      "type": "python",
+      "request": "launch",
+      "module": "pytest",
+      "args": ["tests/", "-v"],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/src"
+      },
+      "justMyCode": true
+    },
+    {
+      "name": "Run Tests (Current File)",
+      "type": "python",
+      "request": "launch",
+      "module": "pytest",
+      "args": ["${file}", "-v"],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/src"
+      },
+      "justMyCode": true
+    },
+    {
+      "name": "Run Tests (Current Test)",
+      "type": "python",
+      "request": "launch",
+      "module": "pytest",
+      "args": ["${file}::${selectedText}", "-v"],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/src"
+      },
+      "justMyCode": true
+    },
+    {
+      "name": "Debug Config Generation",
+      "type": "python",
+      "request": "launch",
+      "module": "laptop_telemetry",
+      "args": ["generate-config", "--output", "config/debug.yaml"],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/src"
+      },
+      "justMyCode": true
+    },
+    {
+      "name": "Validate Config",
+      "type": "python",
+      "request": "launch",
+      "module": "laptop_telemetry",
+      "args": ["--validate-config", "--config", "config/default.yaml"],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/src"
+      },
+      "justMyCode": true
+    },
+    {
+      "name": "List Sensors",
+      "type": "python",
+      "request": "launch",
+      "module": "laptop_telemetry",
+      "args": ["--list-sensors"],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/src"
+      },
+      "justMyCode": true
+    },
+    {
+      "name": "Collector Status",
+      "type": "python",
+      "request": "launch",
+      "module": "laptop_telemetry",
+      "args": ["--collector-status"],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/src"
+      },
+      "justMyCode": true
+    }
+  ]
+}

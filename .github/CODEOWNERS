@@ -1,0 +1,51 @@
+# Code Owners for Laptop Telemetry
+# These users/teams will be automatically requested for review on PRs touching these files
+
+# Global owners (fallback for all files)
+* @telemetry-maintainers
+
+# Core package
+/src/laptop_telemetry/ @telemetry-core
+
+# Collectors
+/src/laptop_telemetry/collectors/ @telemetry-collectors
+/src/laptop_telemetry/collectors/cpu.py @telemetry-cpu
+/src/laptop_telemetry/collectors/memory.py @telemetry-memory
+/src/laptop_telemetry/collectors/disk.py @telemetry-disk
+/src/laptop_telemetry/collectors/network.py @telemetry-network
+/src/laptop_telemetry/collectors/thermal.py @telemetry-thermal
+/src/laptop_telemetry/collectors/fan.py @telemetry-fan
+/src/laptop_telemetry/collectors/voltage.py @telemetry-voltage
+/src/laptop_telemetry/collectors/battery.py @telemetry-battery
+/src/laptop_telemetry/collectors/gpu.py @telemetry-gpu
+/src/laptop_telemetry/collectors/ohm_manager.py @telemetry-ohm
+/src/laptop_telemetry/collectors/registry.py @telemetry-core
+
+# Exporters
+/src/laptop_telemetry/exporter/ @telemetry-exporters
+
+# Scheduler
+/src/laptop_telemetry/scheduler/ @telemetry-scheduler
+
+# Configuration
+/src/laptop_telemetry/config/ @telemetry-config
+
+# Utilities
+/src/laptop_telemetry/utils/ @telemetry-utils
+
+# Tests
+/tests/ @telemetry-testing
+/tests/test_collectors/ @telemetry-collectors
+
+# Documentation
+/docs/ @telemetry-docs
+README.md @telemetry-docs
+ARCHITECTURE.md @telemetry-docs
+CODEBASE_DOCUMENTATION.md @telemetry-docs
+
+# CI/CD
+/.github/workflows/ @telemetry-ci
+/.github/dependabot.yml @telemetry-ci
+
+# Configuration examples
+/config/ @telemetry-config

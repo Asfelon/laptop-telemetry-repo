@@ -1,0 +1,66 @@
+version: 2
+updates:
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 10
+    labels:
+      - "dependencies"
+      - "pip"
+    groups:
+      dev-dependencies:
+        patterns:
+          - "pytest*"
+          - "ruff*"
+          - "mypy*"
+          - "black*"
+          - "pytest-*"
+          - "coverage*"
+        update-types:
+          - "minor"
+          - "patch"
+      prod-dependencies:
+        patterns:
+          - "psutil"
+          - "wmi"
+          - "pythonnet"
+          - "pydantic*"
+          - "pyyaml"
+          - "loguru"
+          - "click"
+          - "pandas"
+        update-types:
+          - "minor"
+          - "patch"
+    ignore:
+      # pythonnet 3.1.0 has breaking changes for OHM integration
+      - dependency-name: "pythonnet"
+        versions: ["3.1.0"]
+      # Major version updates require manual review
+      - dependency-name: "pydantic"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "pandas"
+        update-types: ["version-update:semver-major"]
+    commit-message:
+      prefix: "chore(deps)"
+      prefix-development: "chore(deps-dev)"
+      include: "scope"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "github-actions"
+    commit-message:
+      prefix: "chore(deps)"
+      include: "scope"

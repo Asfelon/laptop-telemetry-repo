@@ -1,0 +1,107 @@
+# Git Attributes for Laptop Telemetry
+# Ensures consistent line endings and linguist detection
+
+# Default behavior for all text files
+* text=auto eol=lf
+
+# Explicitly declare text files
+*.py text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.toml text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.cfg text eol=lf
+*.ini text eol=lf
+*.sh text eol=lf
+*.bat text eol=crlf
+*.ps1 text eol=crlf
+*.cmd text eol=crlf
+
+# Binary files (don't convert line endings)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.svg binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary
+*.pdf binary
+*.zip binary
+*.tar.gz binary
+*.whl binary
+*.dll binary
+*.so binary
+*.pyd binary
+*.exe binary
+*.msi binary
+
+# Linguist overrides for language detection
+*.yaml linguist-language=YAML
+*.yml linguist-language=YAML
+*.toml linguist-language=TOML
+*.json linguist-language=JSON
+*.md linguist-language=Markdown
+*.txt linguist-language=Text
+*.cfg linguist-language=INI
+*.ini linguist-language=INI
+*.sh linguist-language=Shell
+*.bat linguist-language=Batchfile
+*.ps1 linguist-language=PowerShell
+*.cmd linguist-language=Batchfile
+
+# Documentation files - exclude from linguist stats
+docs/* linguist-documentation=true
+README.md linguist-documentation=true
+CHANGELOG.md linguist-documentation=true
+CONTRIBUTING.md linguist-documentation=true
+CODE_OF_CONDUCT.md linguist-documentation=true
+SECURITY.md linguist-documentation=true
+LICENSE linguist-documentation=true
+ARCHITECTURE.md linguist-documentation=true
+CODEBASE_DOCUMENTATION.md linguist-documentation=true
+
+# Test files - exclude from linguist stats
+tests/* linguist-test=true
+test_*.py linguist-test=true
+*_test.py linguist-test=true
+conftest.py linguist-test=true
+
+# Configuration files - exclude from linguist stats
+config/* linguist-vendored=true
+*.example.yaml linguist-vendored=true
+*.example.yml linguist-vendored=true
+
+# CI/CD files - exclude from linguist stats
+.github/* linguist-vendored=true
+.gitignore linguist-vendored=true
+.gitattributes linguist-vendored=true
+.pre-commit-config.yaml linguist-vendored=true
+
+# Build artifacts - exclude from linguist stats
+dist/* linguist-vendored=true
+build/* linguist-vendored=true
+*.egg-info/* linguist-vendored=true
+
+# Export ignore for git archive
+docs/ export-ignore
+tests/ export-ignore
+.github/ export-ignore
+.vscode/ export-ignore
+config/ export-ignore
+*.md export-ignore
+LICENSE export-ignore
+CHANGELOG.md export-ignore
+CONTRIBUTING.md export-ignore
+CODE_OF_CONDUCT.md export-ignore
+SECURITY.md export-ignore
+.gitignore export-ignore
+.gitattributes export-ignore
+.pre-commit-config.yaml export-ignore
+pyproject.toml export-ignore
+Makefile export-ignore
+justfile export-ignore

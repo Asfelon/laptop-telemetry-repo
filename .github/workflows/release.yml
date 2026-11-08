@@ -1,0 +1,86 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+  packages: write
+  id-token: write  # For PyPI trusted publishing
+
+jobs:
+  build-and-publish:
+    name: Build & Publish to PyPI
+    runs-on: ubuntu-latest
+    environment: release
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for changelog generation
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          python-version: "3.12"
+          enable-cache: true
+
+      - name: Install dependencies
+        run: uv sync --all-extras --dev
+
+      - name: Run tests (quick)
+        run: uv run pytest -x -q
+
+      - name: Build package
+        run: uv build
+
+      - name: Verify package
+        run: |
+          uv run twine check dist/*
+          echo "Package contents:"
+          tar -tzf dist/*.tar.gz | head -20
+          unzip -l dist/*.whl | head -20
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          # Uses PyPI trusted publishing (OIDC) - no password needed
+          # Configure at https://pypi.org/manage/account/publishing/
+          skip-existing: true
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          generate_release_notes: true
+          draft: false
+          prerelease: ${{ contains(github.ref_name, '-alpha') || contains(github.ref_name, '-beta') || contains(github.ref_name, '-rc') }}
+          files: |
+            dist/*.tar.gz
+            dist/*.whl
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # Optional: Build Windows installer/executable
+  # build-windows:
+  #   name: Build Windows Executable
+  #   runs-on: windows-latest
+  #   needs: build-and-publish
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: astral-sh/setup-uv@v3
+  #       with:
+  #         python-version: "3.12"
+  #     - name: Install dependencies
+  #       run: uv sync --all-extras --dev
+  #     - name: Install PyInstaller
+  #       run: uv pip install pyinstaller
+  #     - name: Build executable
+  #       run: |
+  #         pyinstaller --onefile --name laptop-telemetry src/laptop_telemetry/__main__.py
+  #     - name: Upload Windows artifact
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: laptop-telemetry-windows
+  #         path: dist/laptop-telemetry.exe

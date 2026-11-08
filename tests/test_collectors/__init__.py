@@ -1,0 +1,3 @@
+"""
+Test collectors package.
+"""

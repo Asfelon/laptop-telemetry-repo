@@ -1,0 +1,62 @@
+# Laptop Telemetry Collector - Default Configuration
+# Copy this file and modify as needed
+
+collection:
+  interval_seconds: 60
+  duration_seconds: 0  # 0 = infinite
+
+output:
+  format: "both"  # jsonl, csv, or both
+  directory: "./logs"
+  filename_template: "telemetry_{hostname}_{date}.{ext}"
+  rotation:
+    max_size_mb: 100
+    max_files: 30
+    compress: true
+
+collectors:
+  cpu:
+    enabled: true
+    per_core: true
+    include_temperature: true
+    include_power: true
+    include_cache: true
+    include_system_counters: true
+  memory:
+    enabled: true
+    include_swap: true
+    include_page_faults: true
+    include_numa: true
+  disk:
+    enabled: true
+    physical_disks: "all"
+    partitions: "all"
+    include_io: true
+    include_smart: true
+    include_temperature: true
+  network:
+    enabled: true
+    interfaces: "all"
+  thermal:
+    enabled: true
+    sensors: "all"
+  fan:
+    enabled: true
+    sensors: "all"
+  voltage:
+    enabled: true
+    rails: "all"
+  battery:
+    enabled: true
+  gpu:
+    enabled: true
+    devices: "all"
+
+openhardwaremonitor:
+  dll_path: "C:\\Users\\anujd\\Downloads\\OpenHardwareMonitor\\OpenHardwareMonitorLib.dll"  # Set path to OpenHardwareMonitorLib.dll (e.g., "C:/path/to/OpenHardwareMonitorLib.dll")
+
+logging:
+  level: "INFO"
+  file: "./logs/collector.log"
+  rotation: "10 MB"
+  retention: "30 days"

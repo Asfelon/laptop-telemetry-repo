@@ -1,0 +1,111 @@
+# Pre-commit hooks for Laptop Telemetry
+# Install: pre-commit install
+# Run manually: pre-commit run --all-files
+
+repos:
+  # Ruff - Fast Python linter and formatter
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.5.0
+    hooks:
+      - id: ruff
+        name: Ruff Lint
+        args: [--fix, --exit-non-zero-on-fix, --show-fixes]
+        types_or: [python, pyi]
+      - id: ruff-format
+        name: Ruff Format
+        args: [--check]
+        types_or: [python, pyi]
+
+  # MyPy - Static type checker
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.10.0
+    hooks:
+      - id: mypy
+        name: MyPy Type Check
+        additional_dependencies:
+          - pydantic>=2.5.0
+          - pydantic-settings>=2.1.0
+          - psutil>=5.9.0
+          - wmi>=1.5.1
+          - pythonnet>=3.0.0
+          - pyyaml>=6.0
+          - loguru>=0.7.0
+          - click>=8.1.0
+          - pandas>=2.0.0
+          - pytest>=7.4.0
+          - pytest-mock>=3.12.0
+        args: [--strict, --warn-return-any, --warn-unused-configs, --show-error-codes]
+        types_or: [python, pyi]
+        exclude: ^tests/
+
+  # General pre-commit hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: trailing-whitespace
+        name: Trim Trailing Whitespace
+        types_or: [python, yaml, yml, toml, md, txt, json]
+      - id: end-of-file-fixer
+        name: Fix End of Files
+        types_or: [python, yaml, yml, toml, md, txt, json]
+      - id: check-yaml
+        name: Check YAML Syntax
+        types_or: [yaml, yml]
+      - id: check-toml
+        name: Check TOML Syntax
+        types_or: [toml]
+      - id: check-merge-conflict
+        name: Check Merge Conflicts
+      - id: debug-logger
+        name: Check for Debug Loggers
+        types_or: [python]
+      - id: detect-private-key
+        name: Detect Private Keys
+      - id: check-case-conflict
+        name: Check Case Conflicts
+      - id: check-symlinks
+        name: Check Symlinks
+      - id: mixed-line-ending
+        name: Check Mixed Line Endings
+        args: [--fix=lf]
+        types_or: [python, yaml, yml, toml, md, txt]
+
+  # Check for common issues in Python files
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: check-ast
+        name: Check Python AST
+        types_or: [python]
+      - id: check-docstring-first
+        name: Check Docstring First
+        types_or: [python]
+
+  # Bandit - Security linter (optional, can be slow)
+  # - repo: https://github.com/PyCQA/bandit
+  #   rev: 1.7.5
+  #   hooks:
+  #     - id: bandit
+  #       name: Bandit Security Check
+  #       args: [-r, src/, -ll, -f, json, -o, bandit-report.json]
+  #       types_or: [python]
+
+  # Check for TODO/FIXME comments
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: forbid-new-submodules
+        name: Forbid New Submodules
+
+# Configuration for specific hooks
+ci:
+  autofix_commit_msg: |
+    style: auto-fix from pre-commit hooks
+
+    [skip ci]
+  autofix_prs: true
+  autoupdate_branch: ""
+  autoupdate_commit_msg: "chore: update pre-commit hooks"
+  autoupdate_schedule: weekly
+  skip: []
+  submodules: false
