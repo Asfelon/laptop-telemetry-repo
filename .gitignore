@@ -93,9 +93,6 @@ poetry.lock
 # pdm
 .pdm.toml
 
-# uv
-uv.lock
-
 # Virtual environments
 .env
 .venv
