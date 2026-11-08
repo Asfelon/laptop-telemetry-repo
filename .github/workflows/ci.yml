@@ -30,9 +30,9 @@ jobs:
       - name: Install dependencies
         run: |
           if [ "${{ runner.os }}" = "Windows" ]; then
-            uv sync --all-extras --dev --extra windows
+            uv sync --extra windows --dev
           else
-            uv sync --all-extras --dev
+            uv sync --dev
           fi
 
       - name: Run Ruff (lint)
@@ -73,9 +73,9 @@ jobs:
       - name: Install dependencies
         run: |
           if [ "${{ runner.os }}" = "Windows" ]; then
-            uv sync --all-extras --dev --extra windows
+            uv sync --extra windows --dev
           else
-            uv sync --all-extras --dev
+            uv sync --dev
           fi
 
       - name: Run tests
@@ -133,9 +133,9 @@ jobs:
       - name: Install dependencies
         run: |
           if [ "${{ runner.os }}" = "Windows" ]; then
-            uv sync --all-extras --dev --extra windows
+            uv sync --extra windows --dev
           else
-            uv sync --all-extras --dev
+            uv sync --dev
           fi
 
       - name: Build package
