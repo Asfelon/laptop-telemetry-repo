@@ -140,7 +140,7 @@ Options:
 
 ### JSON Lines (default)
 
-Each line is a complete JSON object with all metrics for that collection interval:
+Each line is a complete JSON object with all metrics for that collection interval. The JSONL exporter uses a single file per run (appending records across collection intervals), similar to the CSV exporter.
 
 ```json
 {

@@ -104,9 +104,11 @@ Controls output format and file management.
 | `format` | string | `"both"` | Output format: `"jsonl"`, `"csv"`, or `"both"` |
 | `directory` | string | `"./logs"` | Output directory (created if missing) |
 | `filename_template` | string | `"telemetry_{hostname}_{date}.{ext}"` | Template with placeholders |
-| `rotation.max_size_mb` | integer | `100` | Max file size before rotation |
-| `rotation.max_files` | integer | `30` | Max rotated files to keep |
-| `rotation.compress` | boolean | `true` | Compress rotated files with gzip |
+| `rotation.max_size_mb` | integer | `100` | Max file size before rotation (CSV only; JSONL uses single file per run) |
+| `rotation.max_files` | integer | `30` | Max rotated files to keep (CSV only) |
+| `rotation.compress` | boolean | `true` | Compress rotated files with gzip (CSV only) |
+
+**Note**: JSONL exporter now uses a single file per run (appending records across collection intervals), similar to CSV exporter. File rotation settings apply primarily to CSV output.
 
 **Filename Placeholders**:
 

@@ -20,7 +20,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Comprehensive test suite with pytest
 
 ### Changed
-- N/A
+- JSONExporter now uses single file per run (like CSVExporter), appending records across multiple export() calls instead of creating a new file each time
+- Fixed ruff deprecation warning by moving lint settings to [tool.ruff.lint] section in pyproject.toml
 
 ### Deprecated
 - N/A
