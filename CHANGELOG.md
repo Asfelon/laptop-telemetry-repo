@@ -1,3 +1,5 @@
+> **⚠️ Disclaimer**: This CHANGELOG.md file is **LLM-generated for testing purposes only**. It is a **sample and not legally binding**. Do not use this Changelog for production purposes without proper legal review.
+
 # Changelog
 
 All notable changes to this project will be documented in this file.

@@ -1,51 +1,52 @@
 # Code Owners for Laptop Telemetry
 # These users/teams will be automatically requested for review on PRs touching these files
+# Repository: https://github.com/Asfelon/laptop-telemetry-repo
 
 # Global owners (fallback for all files)
-* @telemetry-maintainers
+* @Asfelon
 
 # Core package
-/src/laptop_telemetry/ @telemetry-core
+/src/laptop_telemetry/ @Asfelon
 
 # Collectors
-/src/laptop_telemetry/collectors/ @telemetry-collectors
-/src/laptop_telemetry/collectors/cpu.py @telemetry-cpu
-/src/laptop_telemetry/collectors/memory.py @telemetry-memory
-/src/laptop_telemetry/collectors/disk.py @telemetry-disk
-/src/laptop_telemetry/collectors/network.py @telemetry-network
-/src/laptop_telemetry/collectors/thermal.py @telemetry-thermal
-/src/laptop_telemetry/collectors/fan.py @telemetry-fan
-/src/laptop_telemetry/collectors/voltage.py @telemetry-voltage
-/src/laptop_telemetry/collectors/battery.py @telemetry-battery
-/src/laptop_telemetry/collectors/gpu.py @telemetry-gpu
-/src/laptop_telemetry/collectors/ohm_manager.py @telemetry-ohm
-/src/laptop_telemetry/collectors/registry.py @telemetry-core
+/src/laptop_telemetry/collectors/ @Asfelon
+/src/laptop_telemetry/collectors/cpu.py @Asfelon
+/src/laptop_telemetry/collectors/memory.py @Asfelon
+/src/laptop_telemetry/collectors/disk.py @Asfelon
+/src/laptop_telemetry/collectors/network.py @Asfelon
+/src/laptop_telemetry/collectors/thermal.py @Asfelon
+/src/laptop_telemetry/collectors/fan.py @Asfelon
+/src/laptop_telemetry/collectors/voltage.py @Asfelon
+/src/laptop_telemetry/collectors/battery.py @Asfelon
+/src/laptop_telemetry/collectors/gpu.py @Asfelon
+/src/laptop_telemetry/collectors/ohm_manager.py @Asfelon
+/src/laptop_telemetry/collectors/registry.py @Asfelon
 
 # Exporters
-/src/laptop_telemetry/exporter/ @telemetry-exporters
+/src/laptop_telemetry/exporter/ @Asfelon
 
 # Scheduler
-/src/laptop_telemetry/scheduler/ @telemetry-scheduler
+/src/laptop_telemetry/scheduler/ @Asfelon
 
 # Configuration
-/src/laptop_telemetry/config/ @telemetry-config
+/src/laptop_telemetry/config/ @Asfelon
 
 # Utilities
-/src/laptop_telemetry/utils/ @telemetry-utils
+/src/laptop_telemetry/utils/ @Asfelon
 
 # Tests
-/tests/ @telemetry-testing
-/tests/test_collectors/ @telemetry-collectors
+/tests/ @Asfelon
+/tests/test_collectors/ @Asfelon
 
 # Documentation
-/docs/ @telemetry-docs
-README.md @telemetry-docs
-ARCHITECTURE.md @telemetry-docs
-CODEBASE_DOCUMENTATION.md @telemetry-docs
+/docs/ @Asfelon
+README.md @Asfelon
+ARCHITECTURE.md @Asfelon
+CODEBASE_DOCUMENTATION.md @Asfelon
 
 # CI/CD
-/.github/workflows/ @telemetry-ci
-/.github/dependabot.yml @telemetry-ci
+/.github/workflows/ @Asfelon
+/.github/dependabot.yml @Asfelon
 
 # Configuration examples
-/config/ @telemetry-config
+/config/ @Asfelon

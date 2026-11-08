@@ -1,3 +1,5 @@
+> **⚠️ Disclaimer**: This CODE_OF_CONDUCT.md file is **LLM-generated for testing purposes only**. It is a **sample and not legally binding**. Do not use this Code of Conduct for production purposes without proper legal review.
+
 # Contributor Covenant Code of Conduct
 
 ## Our Pledge
@@ -60,7 +62,7 @@ representative at an online or offline event.
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
 reported to the community leaders responsible for enforcement at
-**conduct@example.com**.
+**anujdalmia98@gmail.com**.
 
 All complaints will be reviewed and investigated promptly and fairly.
 

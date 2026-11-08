@@ -1,3 +1,5 @@
+> **⚠️ Disclaimer**: This SECURITY.md file is **LLM-generated for testing purposes only**. It is a **sample and not legally binding**. Do not use this Security Policy for production purposes without proper legal review.
+
 # Security Policy
 
 ## Supported Versions
@@ -11,7 +13,7 @@
 
 We take security vulnerabilities seriously. If you discover a security vulnerability, please report it **privately** to:
 
-**security@example.com**
+**anujdalmia98@gmail.com**
 
 ### What to Include
 
@@ -89,6 +91,6 @@ This project runs on Windows and accesses hardware sensors via:
 
 ## Contact
 
-For security concerns, contact: **security@example.com**
+For security concerns, contact: **anujdalmia98@gmail.com**
 
 For general questions, use [GitHub Issues](https://github.com/owner/repo/issues) with the "security" label.

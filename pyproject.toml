@@ -8,7 +8,7 @@ version = "0.1.0"
 description = "Windows laptop telemetry collector for CPU, RAM, Disk, Thermals, Fan Speed, and 80+ metrics at minute-level granularity"
 requires-python = ">=3.10"
 authors = [
-    {name = "Telemetry Developer", email = "dev@example.com"}
+    {name = "Anuj Dalmia", email = "anujdalmia98@gmail.com"}
 ]
 readme = "README.md"
 license = "MIT"

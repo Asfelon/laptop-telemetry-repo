@@ -1,5 +1,7 @@
 # Laptop Telemetry Collector
 
+> **⚠️ Disclaimer**: This project and all its documentation (README, LICENSE, CODE_OF_CONDUCT, SECURITY, CONTRIBUTING, CHANGELOG, and all other markdown files) are **LLM-generated for testing purposes only**. The licenses, Code of Conduct, Security Policy, and other legal/governance documents are **samples and not legally binding**. Do not use this project for production purposes without proper legal review.
+
 A Windows-only Python application that collects comprehensive laptop telemetry (80+ metrics at minute-level granularity) including CPU breakdown (user/dpc/interrupt/privileged), all physical disks with split I/O, cache memory, thermals, fan speeds, and more. Logs to JSON/CSV for later analysis.
 
 ## Features

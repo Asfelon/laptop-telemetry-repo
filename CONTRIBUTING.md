@@ -1,3 +1,5 @@
+> **⚠️ Disclaimer**: This CONTRIBUTING.md file is **LLM-generated for testing purposes only**. It is a **sample and not legally binding**. Do not use this Contributing Guide for production purposes without proper legal review.
+
 # Contributing to Laptop Telemetry
 
 Thank you for your interest in contributing! This document provides guidelines for contributing to the project.
