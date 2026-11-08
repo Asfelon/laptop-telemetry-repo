@@ -179,10 +179,17 @@ class TelemetryConfig(BaseModel):
                 ".{ext}", ".jsonl"
             )
         # For BOTH format, keep the .{ext} placeholder so each exporter can use its own extension
-        elif self.output.format == OutputFormat.BOTH and ".{ext}" not in self.output.filename_template:
+        elif (
+            self.output.format == OutputFormat.BOTH
+            and ".{ext}" not in self.output.filename_template
+        ):
             # If no placeholder, add it before the extension
             if self.output.filename_template.endswith(".jsonl"):
-                self.output.filename_template = self.output.filename_template.replace(".jsonl", ".{ext}")
+                self.output.filename_template = self.output.filename_template.replace(
+                    ".jsonl", ".{ext}"
+                )
             elif self.output.filename_template.endswith(".csv"):
-                self.output.filename_template = self.output.filename_template.replace(".csv", ".{ext}")
+                self.output.filename_template = self.output.filename_template.replace(
+                    ".csv", ".{ext}"
+                )
         return self

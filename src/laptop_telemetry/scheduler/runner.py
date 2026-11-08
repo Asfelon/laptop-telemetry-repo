@@ -15,7 +15,7 @@ from ..collectors.registry import TelemetryCollectorRegistry
 from ..config.models import TelemetryConfig
 from ..exporter.csv_exporter import CSVExporter
 from ..exporter.json_exporter import JSONExporter
-from ..utils.windows import get_system_serial_number
+from ..utils.windows import get_system_serial_number, is_windows
 
 
 class TelemetryRunner:
@@ -42,8 +42,11 @@ class TelemetryRunner:
         self.collection_interval = config.collection.interval_seconds
         self.duration = config.collection.duration_seconds
 
-        # Cache serial number at startup
-        self._serial_number = get_system_serial_number()
+        # Cache serial number at startup (Windows only)
+        if is_windows():
+            self._serial_number = get_system_serial_number()
+        else:
+            self._serial_number = "unknown"
 
         # Initialize exporters
         self._initialize_exporters()
@@ -81,27 +84,38 @@ class TelemetryRunner:
         from ..collectors.battery import BatteryCollector
         from ..collectors.cpu import CPUCollector
         from ..collectors.disk import DiskCollector
-        from ..collectors.fan import FanCollector
-        from ..collectors.gpu import GPUCollector
         from ..collectors.memory import MemoryCollector
         from ..collectors.network import NetworkCollector
-        from ..collectors.thermal import ThermalCollector
-        from ..collectors.voltage import VoltageCollector
+        from ..utils.windows import is_windows
 
+        # Always available collectors
         collectors = [
             ("cpu", CPUCollector),
             ("memory", MemoryCollector),
             ("disk", DiskCollector),
             ("network", NetworkCollector),
-            ("thermal", ThermalCollector),
-            ("fan", FanCollector),
-            ("voltage", VoltageCollector),
             ("battery", BatteryCollector),
-            ("gpu", GPUCollector),
         ]
 
         for name, collector_class in collectors:
-            self.collector_registry.register_collector(name, collector_class)
+            self.collector_registry.register_collector(name, collector_class)  # type: ignore[type-abstract]
+
+        # Windows-specific collectors (require wmi/pythonnet)
+        if is_windows():
+            from ..collectors.fan import FanCollector
+            from ..collectors.gpu import GPUCollector
+            from ..collectors.thermal import ThermalCollector
+            from ..collectors.voltage import VoltageCollector
+
+            windows_collectors = [
+                ("thermal", ThermalCollector),
+                ("fan", FanCollector),
+                ("voltage", VoltageCollector),
+                ("gpu", GPUCollector),
+            ]
+
+            for name, collector_class in windows_collectors:
+                self.collector_registry.register_collector(name, collector_class)  # type: ignore[type-abstract]
 
     def start(self) -> None:
         """Start the telemetry collection."""

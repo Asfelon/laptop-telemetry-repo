@@ -291,10 +291,7 @@ def run(
         click.echo(f"  Duration: {telemetry_config.collection.duration_seconds}s (0 = infinite)")
         fmt = telemetry_config.output.format
         fmt_str = fmt.value if hasattr(fmt, "value") else str(fmt)
-        click.echo(
-            f"  Output: {telemetry_config.output.directory} "
-            f"({fmt_str})"
-        )
+        click.echo(f"  Output: {telemetry_config.output.directory} ({fmt_str})")
         click.echo("  Enabled collectors:")
         collector_names = [
             "cpu",
@@ -326,9 +323,7 @@ def run(
     )
     fmt = telemetry_config.output.format
     fmt_str = fmt.value if hasattr(fmt, "value") else str(fmt)
-    click.echo(
-        f"Output: {telemetry_config.output.directory} ({fmt_str})"
-    )
+    click.echo(f"Output: {telemetry_config.output.directory} ({fmt_str})")
     click.echo("Press Ctrl+C to stop")
 
     runner = TelemetryRunner(telemetry_config)

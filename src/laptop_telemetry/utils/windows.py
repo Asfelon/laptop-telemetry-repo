@@ -61,12 +61,12 @@ def get_openhardwaremonitor_dll_path(config: Optional[Any] = None) -> Optional[s
             # Pydantic model
             ohm = config.openhardwaremonitor
             if ohm and ohm.dll_path:
-                return ohm.dll_path
+                return str(ohm.dll_path)
         elif isinstance(config, dict) and "openhardwaremonitor" in config:
             # Dict
             ohm = config["openhardwaremonitor"]
             if ohm and ohm.get("dll_path"):
-                return ohm["dll_path"]
+                return str(ohm["dll_path"])
     # Fallback to environment variable
     import os
 

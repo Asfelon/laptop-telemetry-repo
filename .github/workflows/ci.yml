@@ -24,11 +24,16 @@ jobs:
       - name: Set up uv
         uses: astral-sh/setup-uv@v3
         with:
-          python-version: ${{ env.PYTHON_VERSION }}
           enable-cache: true
+          cache-dependency-glob: "pyproject.toml"
 
       - name: Install dependencies
-        run: uv sync --all-extras --dev
+        run: |
+          if [ "${{ runner.os }}" = "Windows" ]; then
+            uv sync --all-extras --dev --extra windows
+          else
+            uv sync --all-extras --dev
+          fi
 
       - name: Run Ruff (lint)
         run: uv run ruff check src/ tests/
@@ -62,11 +67,16 @@ jobs:
       - name: Set up uv
         uses: astral-sh/setup-uv@v3
         with:
-          python-version: ${{ matrix.python-version }}
           enable-cache: true
+          cache-dependency-glob: "pyproject.toml"
 
       - name: Install dependencies
-        run: uv sync --all-extras --dev
+        run: |
+          if [ "${{ runner.os }}" = "Windows" ]; then
+            uv sync --all-extras --dev --extra windows
+          else
+            uv sync --all-extras --dev
+          fi
 
       - name: Run tests
         run: uv run pytest --cov=src --cov-report=xml --cov-report=term-missing
@@ -117,11 +127,16 @@ jobs:
       - name: Set up uv
         uses: astral-sh/setup-uv@v3
         with:
-          python-version: ${{ env.PYTHON_VERSION }}
           enable-cache: true
+          cache-dependency-glob: "pyproject.toml"
 
       - name: Install dependencies
-        run: uv sync --all-extras --dev
+        run: |
+          if [ "${{ runner.os }}" = "Windows" ]; then
+            uv sync --all-extras --dev --extra windows
+          else
+            uv sync --all-extras --dev
+          fi
 
       - name: Build package
         run: uv build
