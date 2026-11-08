@@ -584,10 +584,7 @@ dependencies = [
     { name = "pandas", version = "3.1.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
     { name = "psutil" },
     { name = "pydantic" },
-    { name = "pythonnet", version = "3.1.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
-    { name = "pythonnet", version = "3.2.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
     { name = "pyyaml" },
-    { name = "wmi" },
 ]
 
 [package.optional-dependencies]
@@ -598,6 +595,11 @@ dev = [
     { name = "pytest-cov" },
     { name = "pytest-mock" },
     { name = "ruff" },
+]
+windows = [
+    { name = "pythonnet", version = "3.1.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
+    { name = "pythonnet", version = "3.2.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
+    { name = "wmi" },
 ]
 
 [package.metadata]
@@ -612,12 +614,12 @@ requires-dist = [
     { name = "pytest", marker = "extra == 'dev'", specifier = ">=7.4.0" },
     { name = "pytest-cov", marker = "extra == 'dev'", specifier = ">=4.1.0" },
     { name = "pytest-mock", marker = "extra == 'dev'", specifier = ">=3.12.0" },
-    { name = "pythonnet", specifier = ">=3.0.0" },
+    { name = "pythonnet", marker = "extra == 'windows'", specifier = ">=3.0.0" },
     { name = "pyyaml", specifier = ">=6.0" },
     { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.1.0" },
-    { name = "wmi", specifier = ">=1.5.1" },
+    { name = "wmi", marker = "extra == 'windows'", specifier = ">=1.5.1" },
 ]
-provides-extras = ["dev"]
+provides-extras = ["dev", "windows"]
 
 [[package]]
 name = "librt"
