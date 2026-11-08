@@ -33,7 +33,7 @@ def is_admin() -> bool:
     try:
         import ctypes
 
-        result: int = ctypes.windll.shell32.IsUserAnAdmin()
+        result: int = ctypes.windll.shell32.IsUserAnAdmin()  # type: ignore[attr-defined]
         return result != 0
     except Exception:
         return False
