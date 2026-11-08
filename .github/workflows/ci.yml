@@ -90,7 +90,7 @@ jobs:
           LAPTOP_TELEMETRY_COLLECTORS_GPU_ENABLED: "false"
 
       - name: Upload coverage
-        uses: codecov/codecov-action@v4.6.0
+        uses: codecov/codecov-action@v7.1.1
         with:
           files: ./coverage.xml
           flags: unittests
