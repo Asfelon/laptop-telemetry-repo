@@ -26,9 +26,17 @@ class CPUCollector(BaseCollector):
         # Cache static CPU info
         self._cores_physical = psutil.cpu_count(logical=False)
         self._cores_logical = psutil.cpu_count(logical=True)
-        freq = psutil.cpu_freq()
-        self._cpu_freq_min = freq.min if freq else 0
-        self._cpu_freq_max = freq.max if freq else 0
+        self._cpu_freq_min = 0
+        self._cpu_freq_max = 0
+        self._has_cpu_freq = hasattr(psutil, "cpu_freq")
+        if self._has_cpu_freq:
+            try:
+                freq = psutil.cpu_freq()
+                if freq:
+                    self._cpu_freq_min = freq.min if freq.min else 0
+                    self._cpu_freq_max = freq.max if freq.max else 0
+            except (AttributeError, NotImplementedError):
+                self._has_cpu_freq = False
 
         # Prime CPU percent (first call returns 0.0)
         psutil.cpu_percent(interval=None)
@@ -98,17 +106,24 @@ class CPUCollector(BaseCollector):
                     data["usage_per_core"].append(core_data)
 
             # CPU frequency
-            freq = psutil.cpu_freq()
-            if freq:
-                data["frequency_mhz"] = freq.current
-                data["frequency_min_mhz"] = self._cpu_freq_min
-                data["frequency_max_mhz"] = self._cpu_freq_max
+            if self._has_cpu_freq:
+                try:
+                    freq = psutil.cpu_freq()
+                    if freq:
+                        data["frequency_mhz"] = freq.current
+                        data["frequency_min_mhz"] = self._cpu_freq_min
+                        data["frequency_max_mhz"] = self._cpu_freq_max
+                except (AttributeError, NotImplementedError):
+                    pass
 
             # Per-core frequency
-            if self.config.get("per_core", True):
-                per_cpu_freq = psutil.cpu_freq(percpu=True)
-                if per_cpu_freq:
-                    data["frequency_per_core_mhz"] = [f.current for f in per_cpu_freq]
+            if self._has_cpu_freq and self.config.get("per_core", True):
+                try:
+                    per_cpu_freq = psutil.cpu_freq(percpu=True)
+                    if per_cpu_freq:
+                        data["frequency_per_core_mhz"] = [f.current for f in per_cpu_freq]
+                except (AttributeError, NotImplementedError):
+                    pass
 
             # CPU temperature (if available via psutil)
             if self.config.get("include_temperature", True):
