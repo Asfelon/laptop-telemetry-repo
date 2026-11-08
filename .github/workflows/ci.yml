@@ -34,6 +34,7 @@ jobs:
           else
             uv sync --dev
           fi
+        shell: bash
 
       - name: Run Ruff (lint)
         run: uv run --with ruff ruff check src/ tests/
@@ -77,9 +78,10 @@ jobs:
           else
             uv sync --dev
           fi
+        shell: bash
 
       - name: Run tests
-        run: uv run pytest --cov=src --cov-report=xml --cov-report=term-missing
+        run: uv run --with pytest pytest --cov=src --cov-report=xml --cov-report=term-missing
         env:
           # Windows-specific: some collectors need admin, skip in CI
           LAPTOP_TELEMETRY_COLLECTORS_THERMAL_ENABLED: "false"
@@ -137,6 +139,7 @@ jobs:
           else
             uv sync --dev
           fi
+        shell: bash
 
       - name: Build package
         run: uv build
