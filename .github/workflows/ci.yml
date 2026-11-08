@@ -36,13 +36,13 @@ jobs:
           fi
 
       - name: Run Ruff (lint)
-        run: uv run ruff check src/ tests/
+        run: uv run --with ruff ruff check src/ tests/
 
       - name: Run Ruff (format check)
-        run: uv run ruff format --check src/ tests/
+        run: uv run --with ruff ruff format --check src/ tests/
 
       - name: Run MyPy
-        run: uv run mypy src/
+        run: uv run --with mypy mypy src/
 
   test:
     name: Tests (${{ matrix.os }}, Python ${{ matrix.python-version }})
